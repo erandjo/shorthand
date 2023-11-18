@@ -1,10 +1,10 @@
 import random
 
-ld_const = ['k', 'g', 'r', 'l', 'd', 't', 'n', 'm', 'th'];
-ud_const = ['p', 'b', 'f', 'v', 'j', 'h', 'he', 'I', 'ch', 's', 'sh', 'ng', 'nk'];
-consts = ld_const + ud_const;
+ld_cons = ['k', 'g', 'r', 'l', 'd', 't', 'n', 'm', 'th'];
+ud_cons = ['p', 'b', 'f', 'v', 'j', 'h', 'he', 'I', 'ch', 's', 'sh', 'ng', 'nk'];
+cons = ld_cons + ud_cons;
 
-weights = [100] * len(consts);
+weights = [100] * len(cons);
 
 def increase_probability(idx):
     weights[idx] = weights[idx] * 2
@@ -22,14 +22,14 @@ Type:
 def probability_based():
     while True:
         print(instructions)
-        character = random.choices(consts, weights, k=1)[0]
+        character = random.choices(cons, weights, k=1)[0]
         print("practice the stroke:", character, "\n")
         res = input("$ ")
         match res:
             case '1':
-                decrease_probability(consts.index(character))
+                decrease_probability(cons.index(character))
             case '2':
-                increase_probability(consts.index(character))
+                increase_probability(cons.index(character))
             case 'q':
                 break
 
@@ -37,17 +37,17 @@ def probability_based():
 def one_round():
     while True:
         print(instructions)
-        choice = random.choices(consts, weights, k=1)
+        choice = random.choices(cons, weights, k=1)
         if len(choice) < 1:
-            print("Well done you have now practiced all constants!")
+            print("Well done you have now practiced all consonants!")
         character = choice[0]
         print("Practice the stroke:", character, "\n")
         res = input("$ ")
         match res:
             case '1':
-                weights[consts.index(character)] = 0
+                weights[cons.index(character)] = 0
             case '2':
-                weights[consts.index(character)] = 100
+                weights[cons.index(character)] = 100
             case 'q':
                 break
 
@@ -55,7 +55,7 @@ def one_round():
 modes = """
 Do you whish to:
     1. practice until you quit, or
-    2. practice all constants once?
+    2. practice all consonants once?
       
 """
 
